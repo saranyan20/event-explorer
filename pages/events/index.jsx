@@ -1,11 +1,12 @@
 import React from 'react';
-import { getFeaturedEvents } from '../../dummy-data';
+import { getAllEvents } from '../../dummy-data';
+import EventList from '../../components/events/event-list';
 
 const AllEventsPage = () => {
-  const featuredEvents = getFeaturedEvents();
+  const allEvents = getAllEvents();
   return (
     <div>
-      <EventItem items={featuredEvents} />
+      <EventList items={allEvents} />
     </div>
   );
 };
