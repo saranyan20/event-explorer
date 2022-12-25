@@ -1,7 +1,12 @@
-import React from 'react';
-// import "../styles/bootstrap.css";
+import Layout from '../components/layout/layout';
 import '../styles/globals.css';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps }) {
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
+
+export default MyApp;
