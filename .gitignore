@@ -1,4 +1,5 @@
 node_modules
+.next
 .next/build-manifest.json
 .next/fallback-build-manifest.json
 .next/package.json
