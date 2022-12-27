@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import { getEventById, getAllEvents } from '../../api/eventApi';
+import { getEventById, getFeaturedEvents } from '../../api/eventApi';
 import EventSummary from '../../components/event-detail/event-summary';
 import EventLogistics from '../../components/event-detail/event-logistics';
 import EventContent from '../../components/event-detail/event-content';
@@ -11,9 +11,9 @@ function EventDetailPage(props) {
 
   if (!event) {
     return (
-      <ErrorAlert>
-        <p>No event found!</p>
-      </ErrorAlert>
+      <div className='center'>
+        <p>Loading...</p>
+      </div>
     );
   }
 
@@ -38,21 +38,20 @@ export async function getStaticProps(context) {
 
   const event = await getEventById(eventId);
 
-  console.log(event);
-
   return {
     props: {
       event,
     },
+    revalidate: 10,
   };
 }
 
 export async function getStaticPaths() {
-  const allEvents = await getAllEvents();
+  const events = await getFeaturedEvents();
 
   return {
-    paths: allEvents.map((e) => ({ params: { eventId: e.id } })),
-    fallback: false,
+    paths: events.map((e) => ({ params: { eventId: e.id } })),
+    fallback: 'blocking',
   };
 }
 
